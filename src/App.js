@@ -1,25 +1,25 @@
-import {Routes, Route, Link} from 'react-router-dom'; 
-import HomePage from './pages/Home'
-import NewsPage from './pages/News'
-import ContactPage from './pages/Contact'
+import { Routes, Route } from "react-router-dom";
+import Client from "./component/Layout/client/Client";
+import UserPage from "./component/Layout/user/User";
+import Following from "./page/client/Following";
+import Home from "./page/client/Home";
+import Setting from "./page/user/Setting";
 
 function App() {
   return (
-    <div style={{ padding: '10px 32px' }}>
-      <nav>
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/news">News</Link></li>
-          <li><Link to="/contact">Contact</Link></li>
-        </ul>
-      </nav>
-
+    <>
       <Routes>
-        <Route path="/" element={<HomePage />}/>
-        <Route path="/news" element={<NewsPage />}/>
-        <Route path="/contact" element={<ContactPage />}/>
+        <Route path="/" element={<Client />}>
+          <Route index element={<Home />} />
+          <Route path="setting" element={<Setting />} />
+          <Route path="following" element={<Following />} />
+        </Route>
+
+        <Route path="user" element={<UserPage />}>
+          <Route index element={<Setting />} />
+        </Route>
       </Routes>
-    </div>
+    </>
   );
 }
 
